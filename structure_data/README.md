@@ -12,5 +12,4 @@ In this notebook we will cover how to create Wide and Deep model for strcutured 
   - One-Hot encode of categorical attributes
   - Feature crossing
   
-  
-![alt text] (https://github.com/rshah1990/Tensorflow/blob/main/images/dataset%20API.PNG)
+![Screenshot](../images/dataset.PNG)
