@@ -22,4 +22,4 @@ In this notebook we will cover how to create Wide and Deep model for strcutured 
 
 **Note: Number of parallel call is also hyperparameter to select correct value automatically use tf.data.experiment.AUTOTUNE**
 
-![Screenshot](../images/dataset.PNG)
+![Screenshot](../images/dataset1.PNG)
