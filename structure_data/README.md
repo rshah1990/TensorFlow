@@ -31,3 +31,22 @@ This is primarily to solve data pre-processing bottleneck
 - [Inside TensorFlow: tf.data + tf.distribute] (https://www.youtube.com/watch?v=ZnukSLKEw34&t=886s)
 
 ![Screenshot](../images/dataset1.PNG)
+
+# Distributed strategy
+
+In this we will distribute different batch of data to train replica of model on different devices & after every pass synchronization will happen. Except ParameterServerStrategy all other strategy is synchronus. 
+- **Synchronous training** :  Replica of the model architecture is created on each devices. In forward pass different batch of training data will be used  & backward pass individual gradients will be calculated. Now variable which are replicated have different state as data is different.At this point sync will take place using all reduce algo.
+-- **Ring-allreduce architecture** : Network efficient way to aggregate gradients. Sync will be performed from every device to every other device in circular fashion. Reduce operation can be sum or mean on the basis of algo
+- **code**: for default strategy you dont need to wrap keras model code in strategy scope.
+strategy = tf.distribute.MirroredStrategy() # define strategy
+with strategy.scope():
+  "Keras model code"
+- **Multi worker mirrored all reduce strategy** uses TensorFlow collective ops which helps to broadcast all variable to synchronizing gradients at each step. It works very similar way of mirrored strategy but uses multiple workers (Nodes) to distributes work on GPU of multiple machines
+- **TPU Strategy**: all reduce sync training on TPU is very similar to mirrored strategy only thing is it utilizes TPU instead of CPU. For reduce method it uses cross replica sum 
+- **Parameter server strategy** is asynchronous strategy. In this one worker will act as parameter server and other workers will train model and send updates to parameter server, each workers run independently
+- **Central storage** : this is special case of parameter server strategy where all parameters are hold by CPU but it performs synchronous strategy. So variables are not mirrored instead they are placed on CPU and replica across all GPU.
+
+
+![Screenshot](../images/distribute.PNG)
+
+[Distributed TensorFlow] (https://www.oreilly.com/content/distributed-tensorflow/#:~:text=In%20synchronous%20training%2C%20the%20parameter,loop%20repeats%20until%20training%20terminates).
