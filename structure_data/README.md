@@ -5,9 +5,8 @@ In this notebook we will cover how to create Wide and Deep model for strcutured 
 
 - Tensorflow Dataset API
 - Distributed strategy
-- Tensorboard for experiment tracking
 - Tensorflow profiling
-- visualizing keras Model 
+- Wide and Deep model 
 - Feature Engineering
   - One-Hot encode of categorical attributes
   - Feature crossing
@@ -50,3 +49,20 @@ with strategy.scope():
 ![Screenshot](../images/distribute.PNG)
 
 [Distributed TensorFlow] (https://www.oreilly.com/content/distributed-tensorflow/#:~:text=In%20synchronous%20training%2C%20the%20parameter,loop%20repeats%20until%20training%20terminates).
+
+# Tensorflow Profiler
+**Note: Host means CPU & device means GPU/TPU (for model training)** 
+
+
+If your ML model training is slow than slowness can be due to CPU where pre-processing,data loading and data transfer from host to device happens OR at GPU where model training is happening. Tensorflow profiler is used to identify that bottleneck & gives recommendation to solve that.We cant cover everything here since its topic by itself. we will try to cover functionality  at very high level.
+
+- **Overview** :
+  - it shares aggregated performance summary across all the devices & host. 
+  - also gives recommendation if model is input bound i.e. CPU is taking too much time to share information with GPU. 
+- **Input pipeline analyzer** :
+  - it gives much more details of pipeline segregating device side analysis & host side analysis 
+- **tf.data bottleneck analysis** :
+  - it automatically detects bottleneck in tf.data input pipeline & provides recommendation to fix it (experimental mode)
+- **Pod viewer** :
+  - it breakdowns the training steps across all workers. you can select specific traning step from top
+- there are few more tabs like TensorFlow stats,Trace viewer,GPU kernel stats,Memory profile tool (used for OOM error).please refer official guide for more detail(https://www.tensorflow.org/guide/profiler#overview_page)
