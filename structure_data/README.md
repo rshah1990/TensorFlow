@@ -1,4 +1,4 @@
-# Wide and Deep Neural model for structure data
+# Wide and Deep model for structure data
 
 In this notebook we will cover how to create Wide and Deep model for strcutured data with tf.keras layers with below tensorflow features. I will also share references like youtube videos & notebooks which has inspired this work.
 
@@ -66,3 +66,13 @@ If your ML model training is slow than slowness can be due to CPU where pre-proc
 - **Pod viewer** :
   - it breakdowns the training steps across all workers. you can select specific traning step from top
 - there are few more tabs like TensorFlow stats,Trace viewer,GPU kernel stats,Memory profile tool (used for OOM error).please refer official guide for more detail(https://www.tensorflow.org/guide/profiler#overview_page)
+
+
+# Wide and Deep model:
+
+- Deep model works best when input are dense & correlated (continous variable), where as linear model works best with sparse & independent input (categorical variable)
+- deep model generalize well & wide model memorize well
+- In real world data we need both characteristic in model i.e. memorization and generalization.
+- continous varilable is passed to multiple dense layer where as categorical variable is directly connected to output.
+
+![Screenshot](../images/model.png)
