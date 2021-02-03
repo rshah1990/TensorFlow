@@ -8,7 +8,6 @@ In this notebook we will cover how to create Wide and Deep model for strcutured 
 - Tensorflow profiling
 - Wide and Deep model 
 - Feature Engineering
-  - One-Hot encode of categorical attributes
   - Feature crossing
 
 
