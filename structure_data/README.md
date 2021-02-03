@@ -76,3 +76,16 @@ If your ML model training is slow than slowness can be due to CPU where pre-proc
 - continous varilable is passed to multiple dense layer where as categorical variable is directly connected to output.
 
 ![Screenshot](../images/model.png)
+
+# Feature crossing
+
+- feature crossing brings non linear input function to linear learner. but question is how?
+- feature crosses discretize the input space into smaller space, at a time only one space is active and we can learn that space using linear model. check below example, space is divided into 4 smaller space and to learn that space its really easy with linear model
+- if you think carefully DNN does the same thing , at each layers it multiplies features with each other to create feature crosses. so if DNN does the same thing why we need feature crossing?
+- as mentioned above feature crosses bring non linearity to linear model by converting non linear input space to smaller linear space & linear model is easy to train as it is convex problem i.e. it has only one global minima where as DNN is non convex problem. 
+- now question is even though loss function for linear model & DNN is same one is convex and other is non-convex? if there is no hidden layer than DNN is also convex but  permuting the nodes in the hidden layers as well as the weights in subsequent connections, we could have multiple solutions of the weights resulting to the same loss. loss function wrt to variable is non convex and not the loss funtion itself is convex or non convex.
+- **FC is essentially remembering the input space that is the reason we will need massive amount of data so that each bucket will have enough data to generalize**. 
+- Thats the reason FC is used with DNN to generalize (Wide and deep model)
+- try tensorflow play ground to visalize how fc works: http://goo.gl/2NUCAF
+
+![Screenshot](../images/input_space.PNG) ![Screenshot](../images/input_space_divided_resize.PNG)
