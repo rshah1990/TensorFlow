@@ -15,12 +15,33 @@
 
 # Code flow 
 
-- Setup training schema: information to Apache beam to understand training data schema
-- Analyze & transform: returns pre-processed training data & transform function 
-- Dump transformed Data: efficient way to write it as TF records
-- Pre-processing function:
+- **Setup training schema**: information to Apache beam to understand training data schema
+
+<img src="transform/set_schema.PNG" width="400">
+
+- **Analyze & transform**: returns pre-processed training data & transform function
+
+<img src="transform/analyze_transform.PNG" width="400">
+
+- **Dump transformed Data**: efficient way to write it as TF records
+
+<img src="transform/set_schema.PNG" width="400">
+
+- **Pre-processing function**:
    - this will be part of serving input function during inference ie. will be added in tensorflow graph & executed during tensorflow serving 
    - since its part of serving input function its restricted with the function which can be called from tensorflow. cant write arbitrary python code
-- Pre-processing in evaluation dataset: reuse the transform function returned during training & dump it also in Tfrecords
-- Transformation metadata: dump the transformation metadata, which will be part of serving input function 
-- Serving input function: load transformed function & create serving input function , this will be part of estimator
+
+<img src="transform/pre-process.PNG" width="400">
+
+- **Pre-processing in evaluation dataset**: reuse the transform function returned during training & dump it also in Tfrecords
+
+<img src="transform/eval.PNG" width="400">
+
+- **Transformation metadata**: dump the transformation metadata, which will be part of serving input function 
+
+<img src="transform/transform_metadata.PNG" width="400">
+
+- **Serving input function**: load transformed function & create serving input function , this will be part of estimator
+
+<img src="transform/serving_input_fn.PNG" width="400">
+
